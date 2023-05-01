@@ -7,6 +7,7 @@ import Modal from "./components/modal";
 
 function HomePage() {
   const [file, setFile] = useState(null);
+  const [visible, setVisible] = useState(false);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -26,8 +27,10 @@ function HomePage() {
       });
 
       if (res.ok) {
-        console.log("File uploaded successfully");
-        Alert("Hello");
+        setVisible(true);
+        setTimeout(() => {
+          setVisible(false);
+        }, 3000);
       }
 
       const data = await res.json();
@@ -39,6 +42,7 @@ function HomePage() {
 
   return (
     <Fragment>
+      <Alert isVisible={visible} />
       <div className="flex h-screen justify-center items-center">
         <div className="card w-96 h-fit bg-base-100 shadow-xl place-content-center">
           <figure>
@@ -52,6 +56,9 @@ function HomePage() {
               />
             )}
           </figure>
+          {/* <label for="my-modal" class="btn">
+            open modal
+          </label> */}
           <div className="h-fit flex flex-col items-center justify-center">
             <h1 className="card-title m-3">File Uploader</h1>
             <form

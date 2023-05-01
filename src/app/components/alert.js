@@ -1,4 +1,6 @@
-export function Alert(message, type = "success") {
+function Alert({ isVisible, message }) {
+  if (!isVisible) return null;
+
   return (
     <div class="alert alert-success shadow-lg">
       <div>
@@ -15,8 +17,10 @@ export function Alert(message, type = "success") {
             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <span>Your purchase has been confirmed!</span>
+        <span>File uploaded successfully</span>
       </div>
     </div>
   );
 }
+
+export { Alert };
